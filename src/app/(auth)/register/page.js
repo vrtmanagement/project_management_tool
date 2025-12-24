@@ -50,11 +50,6 @@ export default function RegisterPage() {
       return false;
     }
 
-    if (!agreedToTerms) {
-      setError('Please agree to the terms and conditions');
-      return false;
-    }
-
     return true;
   };
 
