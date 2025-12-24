@@ -64,8 +64,8 @@ export default function RegisterPage() {
     setLoading(true);
 
     // Using AuthContext register function
-    const result = await register(formData.name, formData.email, formData.password);
-
+    // const result = await register(formData.name, formData.email, formData.password);
+    const result = { success: false }
     if (result.success) {
       toast.success('Account created successfully!', {
         description: 'Please sign in to continue',
