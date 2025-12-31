@@ -21,6 +21,7 @@ import {
   ChevronRight,
   LogOut,
   BookOpen,
+  FileText,
 } from 'lucide-react';
 import { useState } from 'react';
 
@@ -55,9 +56,17 @@ const memberNavigation = [
   },
 ];
 
+const adminNavigation = [
+  {
+    name: 'Reflections',
+    href: '/dashboard/reflections',
+    icon: FileText,
+  },
+];
+
 export function DashboardSidebar() {
   const pathname = usePathname();
-  const { user, logout } = useAuth();
+  const { user, logout, isAdmin } = useAuth();
   const [isCollapsed, setIsCollapsed] = useState(false);
   const isMember = user?.role === 'member';
 
@@ -147,7 +156,7 @@ export function DashboardSidebar() {
             );
           })}
           {/* Member-only navigation */}
-          {/* {isMember && memberNavigation.map((item) => {
+          {isMember && memberNavigation.map((item) => {
             const isActive = pathname === item.href || pathname?.startsWith(item.href + '/');
             return (
               <Link key={item.name} href={item.href}>
@@ -164,7 +173,26 @@ export function DashboardSidebar() {
                 </Button>
               </Link>
             );
-          })} */}
+          })}
+          {/* Admin-only navigation */}
+          {isAdmin && adminNavigation.map((item) => {
+            const isActive = pathname === item.href || pathname?.startsWith(item.href + '/');
+            return (
+              <Link key={item.name} href={item.href}>
+                <Button
+                  variant={isActive ? 'secondary' : 'ghost'}
+                  className={cn(
+                    'w-full justify-start gap-3',
+                    isActive && 'bg-primary/10 text-primary hover:bg-primary/20',
+                    isCollapsed && 'justify-center'
+                  )}
+                >
+                  <item.icon className="h-5 w-5 shrink-0" />
+                  {!isCollapsed && <span>{item.name}</span>}
+                </Button>
+              </Link>
+            );
+          })}
         </nav>
       </ScrollArea>
 
