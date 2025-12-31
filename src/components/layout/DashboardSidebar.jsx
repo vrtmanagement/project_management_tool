@@ -50,7 +50,7 @@ const navigation = [
 
 const memberNavigation = [
   {
-    name: 'Reflection',
+    name: 'Time Boxing',
     href: '/dashboard/reflection',
     icon: BookOpen,
   },
@@ -58,7 +58,7 @@ const memberNavigation = [
 
 const adminNavigation = [
   {
-    name: 'Reflections',
+    name: 'Time Boxing',
     href: '/dashboard/reflections',
     icon: FileText,
   },
